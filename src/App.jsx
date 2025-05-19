@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import ProductionHouse from "./components/ProductionHouse";
 import Slider from "./components/Slider";
 import Footer from "./components/Footer";
-import Login from "./pages/Login"; 
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 function App() {
