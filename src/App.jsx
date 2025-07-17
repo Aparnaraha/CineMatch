@@ -1,35 +1,36 @@
-import React, { useState } from "react";
-import "./App.css";
-import GenreMovieList from "./components/GenreMovieList";
-import Header from "./components/Header";
-import ProductionHouse from "./components/ProductionHouse";
-import Slider from "./components/Slider";
-import Footer from "./components/Footer";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Trending from "./components/Trending";
+import Popular from "./components/Popular";
+import Movie from "./components/Movie";
+import Tvshows from "./components/Tvshows";
+import People from "./components/People";
+import Moviedetails from "./components/Moviedetails";
+import TvDetails from "./components/TvDetails";
+import PersonDetails from "./components/PersonDetails";
+import Trailer from "./components/partials/Trailer";
+import NotFound from "./components/Notfound";
 
 function App() {
-  const [view, setView] = useState("home");
-
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
-      <Header setView={setView} />
-
-      {/* Content grows and pushes footer down */}
-      <main className="flex-grow">
-        {view === "home" && (
-          <>
-            <Slider />
-            <ProductionHouse />
-            <GenreMovieList />
-          </>
-        )}
-
-        {view === "login" && <Login setView={setView} />}
-        {view === "signup" && <Signup setView={setView} />}
-      </main>
-
-      <Footer />
+    <div className="flex bg-[#1F1E24] w-screen h-screen">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/trending" element={<Trending />} />
+        <Route path="/popular" element={<Popular />} />
+        <Route path="/movie" element={<Movie />} />
+        <Route path="/movie/details/:id" element={<Moviedetails />}>
+          <Route path="/movie/details/:id/trailer" element={<Trailer />} />
+        </Route>
+        <Route path="/tv" element={<Tvshows />} />
+        <Route path="/tv/details/:id" element={<TvDetails />}>
+          <Route path="/tv/details/:id/trailer" element={<Trailer />} />
+        </Route>
+        <Route path="/person" element={<People />} />
+        <Route path="/person/details/:id" element={<PersonDetails />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
